@@ -3,6 +3,16 @@
 <body>
 <h1>아무거나2</h1>
 
+<p>메뉴명 : {{menu_name}}</p>
+가격 : {{price}}
+
+<p> 밥먹는 사람 : 
+    <ul>
+    {% for guest in guests %}
+    <li>{{guest}} </li>
+    {% endfor %}
+    </ul>
+</p>
 </body>
 
 </html>

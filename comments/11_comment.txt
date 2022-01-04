@@ -1,0 +1,30 @@
+## template html에 정보 전달하기 (Context)  개념
+
+
+# render함수에 context(dictionary 형태)를  정보 전달.
+# views.py
+context = { 
+        "menu_name" : "짜장",
+        "price" : "5000원"
+    }
+    return render(request, "anyfile2.html", context)
+
+# anyfile2.html 아래내용 추가
+메뉴명 : {{menu_name}}
+가격 : {{price}}
+
+
+# DB에 있는 내용을 표시하는 방법
+# from import 사용
+# views.py
+from .models import 아이디
+
+# - homepage 함수에 아래 항목 추가..
+guests = 아이디.objects.all()
+
+context = { 
+        "menu_name" : "짜장",
+        "price" : "5000원",
+        "guests" : guests
+    }
+
