@@ -1,0 +1,8 @@
+## template 이용하기
+
+# sales 밑에 templates/folder를 생성한다.
+# 생성된 폴더에 anyfile1.html 생성
+
+# views.py에 homepage 함수의 return하는 부분을 render로 수정한다.
+    return render(request, "folder/anyfile1.html")
+
