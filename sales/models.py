@@ -1,6 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
-# Create your models here.
+class 아이디(AbstractUser):
+    pass
+
 class Sale(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
@@ -8,5 +11,4 @@ class Sale(models.Model):
     person = models.ForeignKey("Person", on_delete=models.CASCADE)
 
 class Person(models.Model):
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)	    
+    회원 = models.OneToOneField(아이디, on_delete=models.CASCADE)    
