@@ -1,0 +1,10 @@
+## Homepage 등록
+
+# sales/view.py
+- homepage 함수 등록
+
+# sales/urls.py에 경로 등록
+from sales.views import homepage
+path('', homepage),
+
+
