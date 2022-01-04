@@ -1,0 +1,21 @@
+## Run Server
+
+#virtual env환경에서 수행한다.
+python manage.py runserver
+
+# browser에서 아래 URL로 접속
+http://localhost:8000/admin
+
+# .../admin path 설정은 djangocrm/urls.py 에 정의되어 있음
+
+# admin page에 생성한(아이디, Sale, Person) model 등록
+
+# sales/admin.py
+from .models import 아이디, Sale, Person
+
+admin.site.register(아이디)
+admin.site.register(Sale)
+admin.site.register(Person)
+
+# browser에서 아래 URL로 접속하면 추가된 정보 보여진다.
+http://localhost:8000/admin
