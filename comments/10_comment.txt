@@ -6,3 +6,9 @@
 # views.py에 homepage 함수의 return하는 부분을 render로 수정한다.
     return render(request, "folder/anyfile1.html")
 
+# templates의 Default Directory는  해당App폴더/templates 임.
+# 수정하려면, settings.py의 TEMPLATES 부분의 DIRS를 수정하면됨.
+# 기본값                               --> 'DIRS' : []
+# 기본디렉토리 밑에 특정폴더(folder1)   --> 'DIRS' : [BASE_DIR / 'folder1' ]
+
+# BASE_DIR 밑에 templates 등록 후, html파일 생성하여 render하는 페이지 수정
