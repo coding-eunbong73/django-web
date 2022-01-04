@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.urls.conf import include
 from sales.views import homepage
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', homepage),
+    path('homepage/', include('sales.urls', namespace="homepage")),
 ]
