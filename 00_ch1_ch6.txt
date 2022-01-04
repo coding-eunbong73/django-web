@@ -1,0 +1,137 @@
+# 프로젝트 설치 
+# python 설치 : https://www.python.org/downloads/windows/
+# pip 설치    : 
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py.
+python get-pip.py.
+
+
+# virtual 환경 만들어주는 SW 설치 ( 여러 개발환경 사용할 때 유용해 보임, 실제 사용할 때에는 필요한거 시스템에 install하면됨)
+pip install virtualenv
+
+# virtual 환경 생성  (이름이 env임)
+virtualenv env
+
+# 가상환경 실행 (visualstudio code에서는 terminal이 default가 powershell이라 안될 수 있어 cmd로 바꾸어야함.)
+./env/Scripts/activate  ( .\env\Scripts\activate )
+
+# 가상환경에서 django 설치
+pip install django==3.1.4
+
+
+# 현재폴더에 "djangocrm"란 이름의 django 프로젝트 생성
+django-admin startproject djangocrm .
+
+
+#시작
+python manage.py runserver
+
+#확인 (browser)
+http://localhost:8000
+
+
+#db반영 (default Db : sqlite)
+python manage.py migrate
+
+
+## visualstudio code python extensions
+
+https://stackoverflow.com/questions/62297417/autocomplete-django-in-visual-studio-code
+
+CTRL+SHIFT+X
+
+Python (Microsoft)
+Djaneiro
+code spell checker
+
+#visualstudio code 한글을 영문으로 변환
+2.1 (단축키 : ctrl + shift + p). 
+2-2. 검색어로 cdl(Configure Display Language) 또는 표시언어구성을 입력하면 아래 리스트에 표시언어구성(Configure ...
+
+
+
+# sqlite extension 설치
+CTRL+SHIFT+X 
+SQLite alexcvzz 
+
+
+## 설정관련 중요파일 (Chapter 2)
+# settgins.py : 가장 중요한 기본적인 설정이 있다.
+BASE_DIR , SECRET_KEY, INSTALLED_APPS, DATABASES, TIME_ZONE
+
+# asgi.py, wsgi.py : 서비스와 관련된파일
+
+# django에서 app은 논리적인 단위임.
+예) 회원을 관리하는 회원관리, 결재를 담당하는 결재관리, 인증을 수행하는 인증관리
+
+# sales 라는 "주문을 관리하는 앱"을 만든다. (manage.py를 이용)
+python manage.py startapp sales
+
+# 생성된 sales app의 디렉토리 확인해보자.
+- migrations 폴더 : db migration 관련된 부분임.
+- admin.py : 관리자
+- models.py : db관련 부분
+- views.py : browser에서 보여지는 부분
+
+#생성된 app을 등록해함.
+$project_name/settgins.py의 "INSTALLED_APPS" 밑에 'sales', 입력
+
+
+#db반영 (default Db : sqlite)
+python manage.py migrate
+
+
+
+## Chapter3 - models_DB
+
+#appName/models.py
+
+#== 아래부분 추가 ===
+class Sale(models.Model):
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
+    age = models.IntegerField(default=0)
+	
+
+# db 반영하는 스크립트 프로그램 만들어준다. (0001_initial.py)
+python manage.py makemigrations
+Migrations for 'sales':
+  sales\migrations\0001_initial.py
+    - Create model Sale
+	
+# db에 반영한다.
+python manage.py migrate 	
+	
+
+# DBMS (SQLite) 연결한다. ( SQLite extension 설치된 거 가정 )
+1) CTRL+SHIFT+P
+2) SQLite: Open Database 선택
+3) db.sqlite3 선택
+4) 왼쪽하단의 SQLITE EXPLORER 선택
+cf) 사용법 : https://m.blog.naver.com/stonefly2001/221837782596
+
+
+
+
+## Chapter5 - models_DB 변경
+# appName/models.py
+
+#== Sale의 person 필드추가, Person class 추가
+class Sale(models.Model):
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
+    age = models.IntegerField(default=0)
+	person = models.ForeignKey("Person", on_delete=models.CASCADE)
+
+class Person(models.Model):
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)	
+
+
+## Chapter6 - models_DB 변경
+3:40 --> AbstractUser 정의된 파일 볼려면 오른쪽 마우스 --> Go to Definition
+
+기존 initail한 DB 지운다. (0001_initial.py과 db.sqlite3 파일 지오고 다시 생성)
+python manage.py makemigrations
+python manage.py migrate
+
+

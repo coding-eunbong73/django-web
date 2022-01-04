@@ -1,0 +1,39 @@
+##Ch7
+#Create Super User  (UserName:admin, Email: admin@admin.com, Password: New1234!!)
+python manage.py createsuperuser
+
+#open python shell (아이디 <-- 테이블이름)
+python manage.py shell
+>>> from django.contrib.auth import get_user_model
+>>> 아이디 = get_user_model()
+>>> 아이디.objects.all()
+<QuerySet [<아이디: admin>]>
+
+#admin 관리자를 Person에 지정작업 수행
+>>> from sales.models import Person 
+>>> 관리자 = 아이디.objects.get(username="admin")
+>>> 관리자
+<아이디: admin>
+>>> 회원 = Person.objects.create(회원=관리자) 
+>>> 회원
+<Person: Person object (1)>
+
+#위보면 Person이 id값이 1만 보인다. 그래서 Persion에 __str__ 함수 추가
+def __str__(self): 
+    return self.회원.email
+
+#기존 터미날에서 나와 다시 shell 접속한다.
+python manage.py shell
+>>> from django.contrib.auth import get_user_model
+>>> from sales.models import Person 
+>>> Person.objects.all()   
+<QuerySet [<Person: admin@admin.com>]>
+
+#고객(Sale) Table에 데이터 저장하기
+>>> from sales.models import Sale
+>>> 관리직원 = Person.objects.get(회원__email="admin@admin.com")
+>>> 관리직원
+<Person: admin@admin.com>
+>>> Sale.objects.create( first_name = "길동", last_name="홍", age=200, person=관리직원)
+<Sale: Sale object (1)>
+
