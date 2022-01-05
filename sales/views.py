@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http.response import HttpResponse
 from .models import 아이디, Sale, Person
-from .forms import SaleForm
+from .forms import SaleForm, SaleModelForm
 
 def homepage(request):
     guests = 아이디.objects.all()
@@ -30,6 +30,20 @@ def saleForm(request):
     print(request.POST)
     
     if request.method == "POST":
+        form1 = SaleModelForm(request.POST)
+        if form1.is_valid() :
+            form1.save()
+            return redirect("/sales")
+
+    context = { 
+        "saleForm" : SaleModelForm()
+    }
+    return render(request, "saleForm.html", context)    
+
+""" def saleForm(request):
+    print(request.POST)
+    
+    if request.method == "POST":
         print ("포스트 메소드로 왔네요")
         form1 = SaleForm(request.POST)
         if form1.is_valid() :
@@ -51,5 +65,5 @@ def saleForm(request):
     context = { 
         "saleForm" : SaleForm()
     }
-    return render(request, "saleForm.html", context)    
+    return render(request, "saleForm.html", context)     """
 
