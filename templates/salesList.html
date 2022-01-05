@@ -1,0 +1,27 @@
+<html>
+<head>
+<style>
+    .sale {
+        padding-top: 20px;
+        padding-bottom: 30px;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin: 5px;
+        background-color: #f5f5f5;
+    }
+</style>
+
+</head>
+<body>
+<h1>SaleList(목록)</h1>
+
+
+    {% for guest in saleGuests %}
+    <div class="sale">
+        {{guest.first_name}} {{guest.last_name}} 나이는 {{guest.age}} 
+    </div>
+    {% endfor %}
+
+</body>
+
+</html>
