@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http.response import HttpResponse
-from .models import 아이디, Sale
+from .models import 아이디, Sale, Person
 from .forms import SaleForm
 
 def homepage(request):
@@ -28,6 +28,26 @@ def saleDetail(request, pk):
 
 def saleForm(request):
     print(request.POST)
+    
+    if request.method == "POST":
+        print ("포스트 메소드로 왔네요")
+        form1 = SaleForm(request.POST)
+        if form1.is_valid() :
+            print( "유효하네요")
+            print(form1.cleaned_data)
+            first_name = form1.cleaned_data['first_name']
+            last_name = form1.cleaned_data['last_name']
+            age = form1.cleaned_data['age']
+            person = Person.objects.first()
+            Sale.objects.create(
+                first_name=first_name,
+                last_name = last_name,
+                age=age,
+                person=person
+            )
+            print("세일이 입력되었습니다.")
+            return redirect("/sales")
+
     context = { 
         "saleForm" : SaleForm()
     }
