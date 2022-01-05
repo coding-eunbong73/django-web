@@ -13,14 +13,21 @@
 
 </head>
 <body>
-<h1>SaleList(목록)</h1>
+<p>고객을 입력해 주세요.</p>
 
 
-    {% for guest in saleGuests %}
-    <div class="sale">
-      <a href="/sales/{{guest.pk}}">  {{guest.last_name}} {{guest.first_name}} </a>나이는 {{guest.age}} 
-    </div>
-    {% endfor %}
+<form method="post"  >
+    {% csrf_token %}
+    {{saleForm.as_p}}
+<button type="submit">전송</button>
+</form>
+
+<!--
+
+{{saleForm}}
+
+-->
+
 
 </body>
 

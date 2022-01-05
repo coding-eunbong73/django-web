@@ -1,11 +1,12 @@
 from django.urls import path
 from .views import homepage
-from .views import salesList, saleDetail
+from .views import salesList, saleDetail, saleForm
 
 app_name = "homepage"
 
 urlpatterns = [
-    path ('', homepage),
-    path ('sales', salesList),
-    path ('sales/<pk>', saleDetail)
+    #path ('', homepage),
+    path ('', salesList),
+    path ('make/', saleForm),
+    path ('<int:pk>/', saleDetail),
 ]

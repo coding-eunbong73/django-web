@@ -20,5 +20,5 @@ from sales.views import homepage
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('homepage/', include('sales.urls', namespace="homepage")),
+    path('sales/', include('sales.urls', namespace="homepage")),
 ]

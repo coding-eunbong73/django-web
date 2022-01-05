@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http.response import HttpResponse
 from .models import 아이디, Sale
+from .forms import SaleForm
 
 def homepage(request):
     guests = 아이디.objects.all()
@@ -24,4 +25,11 @@ def saleDetail(request, pk):
         "sale" : sale
     }
     return render(request, "saleDetail.html", context)
+
+def saleForm(request):
+    print(request.POST)
+    context = { 
+        "saleForm" : SaleForm()
+    }
+    return render(request, "saleForm.html", context)    
 
