@@ -19,6 +19,9 @@ def salesList(request):
     return render(request, "salesList.html", context)
 
 def saleDetail(request, pk):
-    print (pk)
-    responseStr = "여기상세 정보입니다." + pk
-    return HttpResponse(responseStr)
+    sale = Sale.objects.get(id=pk)
+    context = { 
+        "sale" : sale
+    }
+    return render(request, "saleDetail.html", context)
+

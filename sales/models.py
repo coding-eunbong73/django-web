@@ -10,6 +10,9 @@ class Sale(models.Model):
     age = models.IntegerField(default=0)
     person = models.ForeignKey("Person", on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f"{self.last_name} {self.first_name}"
+
 class Person(models.Model):
     회원 = models.OneToOneField(아이디, on_delete=models.CASCADE) 
     def __str__(self): 

@@ -13,14 +13,7 @@
 
 </head>
 <body>
-<h1>SaleList(목록)</h1>
-
-
-    {% for guest in saleGuests %}
-    <div class="sale">
-      <a href="/homepage/sales/{{guest.pk}}">  {{guest.last_name}} {{guest.first_name}} </a>나이는 {{guest.age}} 
-    </div>
-    {% endfor %}
+<h1>고객 {{sale.first_name}}의 나이는  {{sale.age}} 입니다.</h1>
 
 </body>
 
