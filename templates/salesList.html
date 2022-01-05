@@ -13,12 +13,15 @@
 
 </head>
 <body>
+
+<a href="{% url 'sales:create' %}">고객 등록</a>     
+<!-- <a href="/sales/make">고객 등록</a> -->
 <h1>SaleList(목록)</h1>
 
 
     {% for guest in saleGuests %}
     <div class="sale">
-      <a href="/sales/{{guest.pk}}">  {{guest.last_name}} {{guest.first_name}} </a>나이는 {{guest.age}} 
+      <a href="{% url 'sales:detail' guest.pk %}">  {{guest.last_name}} {{guest.first_name}} </a>나이는 {{guest.age}} 
     </div>
     {% endfor %}
 
