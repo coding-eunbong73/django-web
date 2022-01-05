@@ -42,6 +42,28 @@ def saleForm(request):
 
 def saleUpdate(request, pk):
     sale = Sale.objects.get(id=pk)
+    form1 = SaleModelForm(instance=sale)
+    if request.method == "POST":
+        form1 = SaleModelForm(request.POST, instance=sale)
+        if form1.is_valid() :
+            form1.save()
+
+            return redirect("/sales")   
+ 
+    context = { 
+        "saleForm" : form1,
+        "sale": sale
+    }
+    return render(request, "saleUpdate.html", context)
+
+def saleDelete(request, pk):
+    sale = Sale.objects.get(id=pk)
+    sale.delete()
+    return redirect("/sales")   
+
+
+""" def saleUpdate(request, pk):
+    sale = Sale.objects.get(id=pk)
     form1 = SaleForm()
     if request.method == "POST":
         form1 = SaleForm(request.POST)
@@ -61,9 +83,7 @@ def saleUpdate(request, pk):
         "sale" : sale,
         "saleForm" : form1
     }
-    return render(request, "saleUpdate.html", context)
-
-
+    return render(request, "saleUpdate.html", context) """
 
 
 """ def saleForm(request):
