@@ -40,6 +40,32 @@ def saleForm(request):
     }
     return render(request, "saleForm.html", context)    
 
+def saleUpdate(request, pk):
+    sale = Sale.objects.get(id=pk)
+    form1 = SaleForm()
+    if request.method == "POST":
+        form1 = SaleForm(request.POST)
+        if form1.is_valid() :
+            first_name = form1.cleaned_data['first_name']
+            last_name = form1.cleaned_data['last_name']
+            age = form1.cleaned_data['age']
+
+            sale.first_name = first_name
+            sale.last_name  = last_name 
+            sale.age = age 
+            sale.save()
+
+            return redirect("/sales")   
+ 
+    context = { 
+        "sale" : sale,
+        "saleForm" : form1
+    }
+    return render(request, "saleUpdate.html", context)
+
+
+
+
 """ def saleForm(request):
     print(request.POST)
     
