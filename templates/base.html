@@ -10,24 +10,15 @@
         background-color: #f5f5f5;
     }
 </style>
-
 </head>
+
 <body>
-<p>고객을 입력해 주세요.</p>
 
+{% block content %}
+    
+{% endblock content %}
 
-<form method="post"  >
-    {% csrf_token %}
-    {{saleForm.as_p}}
-<button type="submit">전송</button>
-</form>
-
-<!--
-
-{{saleForm}}
-
--->
-
+{% include 'program.html' %}
 
 </body>
 

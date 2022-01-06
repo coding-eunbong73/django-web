@@ -17,14 +17,14 @@ def salesList(request):
     context = { 
         "saleGuests" : saleGuests
     }
-    return render(request, "salesList.html", context)
+    return render(request, "folder/salesList.html", context)
 
 def saleDetail(request, pk):
     sale = Sale.objects.get(id=pk)
     context = { 
         "sale" : sale
     }
-    return render(request, "saleDetail.html", context)
+    return render(request, "folder/saleDetail.html", context)
 
 def saleForm(request):
     print(request.POST)
@@ -38,7 +38,7 @@ def saleForm(request):
     context = { 
         "saleForm" : SaleModelForm()
     }
-    return render(request, "saleForm.html", context)    
+    return render(request, "folder/saleForm.html", context)    
 
 def saleUpdate(request, pk):
     sale = Sale.objects.get(id=pk)
@@ -54,7 +54,7 @@ def saleUpdate(request, pk):
         "saleForm" : form1,
         "sale": sale
     }
-    return render(request, "saleUpdate.html", context)
+    return render(request, "folder/saleUpdate.html", context)
 
 def saleDelete(request, pk):
     sale = Sale.objects.get(id=pk)

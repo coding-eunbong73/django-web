@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p>고객을 입력해 주세요.</p>
+
+
+<form method="post"  >
+    {% csrf_token %}
+    {{saleForm.as_p}}
+<button type="submit">전송</button>
+</form>
+
+{% endblock content %}

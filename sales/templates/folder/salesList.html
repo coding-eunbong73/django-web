@@ -1,19 +1,6 @@
-<html>
-<head>
-<style>
-    .sale {
-        padding-top: 20px;
-        padding-bottom: 30px;
-        padding-left: 10px;
-        padding-right: 10px;
-        margin: 5px;
-        background-color: #f5f5f5;
-    }
-</style>
+{% extends 'base.html' %}
 
-</head>
-<body>
-
+{% block content %}
 <a href="{% url 'sales:create' %}">고객 등록</a>     
 <!-- <a href="/sales/make">고객 등록</a> -->
 <h1>SaleList(목록)</h1>
@@ -25,6 +12,4 @@
     </div>
     {% endfor %}
 
-</body>
-
-</html>
+{% endblock content %}

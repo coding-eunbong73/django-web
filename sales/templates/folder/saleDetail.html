@@ -1,9 +1,6 @@
-<html>
-<head>
+{% extends 'base.html' %}
 
-
-</head>
-<body>
+{% block content %}
 <a href="{% url 'sales:list' %}">목록으로 돌아가기</a>     
 
 <h1>고객 {{sale.first_name}}의 나이는  {{sale.age}} 입니다.</h1>
@@ -12,6 +9,4 @@
 <a href="{% url 'sales:delete' sale.pk %}">지우기</a>
 
 
-</body>
-
-</html>
+{% endblock content %}
