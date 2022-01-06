@@ -7,8 +7,8 @@
 
 
     {% for guest in saleGuests %}
-    <div class="sale">
-      <a href="{% url 'sales:detail' guest.pk %}">  {{guest.last_name}} {{guest.first_name}} </a>나이는 {{guest.age}} 
+    <div class="sale m-2" style="background-color:burlywood;">
+      <a href="{% url 'sales:detail' guest.pk %}" style="background-color: beige;">  {{guest.last_name}} {{guest.first_name}} </a>나이는 {{guest.age}} 
     </div>
     {% endfor %}
 

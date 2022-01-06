@@ -1,14 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<p>고객을 입력해 주세요.</p>
+<p>정말 지워요?</p>
 
 
 <form method="post" style="background-color: beige; margin: 5px" >
     {% csrf_token %}
-    {{form.as_p}}
 
-    <!--{{saleForm.as_p}}-->
 <button type="submit">전송</button>
 </form>
 

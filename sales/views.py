@@ -1,10 +1,21 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.http.response import HttpResponse
 from .models import 아이디, Sale, Person
 from .forms import SaleForm, SaleModelForm
+from django.views import generic
+
+class homepageTemplateView(generic.TemplateView):
+    template_name = "firstPage.html"
 
 def homepage(request):
     return render(request, "firstPage.html")
+
+
+class salesListView(generic.ListView):
+    template_name = "folder/salesList.html"
+    queryset = Sale.objects.all()
+    context_object_name = "saleGuests"
+
 
 def salesList(request):
     saleGuests = Sale.objects.all()
@@ -13,12 +24,26 @@ def salesList(request):
     }
     return render(request, "folder/salesList.html", context)
 
+class saleDetailView(generic.DetailView):
+    template_name = "folder/saleDetail.html"
+    queryset = Sale.objects.all()
+    context_object_name = "sale"
+
+   
+
 def saleDetail(request, pk):
     sale = Sale.objects.get(id=pk)
     context = { 
         "sale" : sale
     }
     return render(request, "folder/saleDetail.html", context)
+
+class saleFormView(generic.CreateView):
+    template_name = "folder/saleForm.html"
+    form_class = SaleModelForm
+
+    def get_success_url(self):
+        return reverse("sales:list")
 
 def saleForm(request):
     print(request.POST)
@@ -34,7 +59,20 @@ def saleForm(request):
     }
     return render(request, "folder/saleForm.html", context)    
 
+class saleUpdateView(generic.UpdateView):
+    print("saleUpdateView!!!")
+
+    template_name = "folder/saleUpdate.html"
+    queryset = Sale.objects.all()
+
+    form_class = SaleModelForm
+    context_object_name = "sale"
+
+    def get_success_url(self):
+        return reverse("sales:list")
+
 def saleUpdate(request, pk):
+    print("saleUpdate!!!")
     sale = Sale.objects.get(id=pk)
     form1 = SaleModelForm(instance=sale)
     if request.method == "POST":
@@ -50,7 +88,17 @@ def saleUpdate(request, pk):
     }
     return render(request, "folder/saleUpdate.html", context)
 
+class saleDeleteView(generic.DeleteView):
+    print("saleDeleteView!!!")
+    queryset = Sale.objects.all()
+    template_name = "folder/saleDelete.html"
+
+
+    def get_success_url(self):
+        return reverse("sales:list")
+
 def saleDelete(request, pk):
+    print("test")
     sale = Sale.objects.get(id=pk)
     sale.delete()
     return redirect("/sales")   
