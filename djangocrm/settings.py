@@ -124,3 +124,6 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = "static_root"
 AUTH_USER_MODEL = 'sales.아이디'
+
+# console: console에 표시만됨, 실제 보내지게 할려면 smtp설정정보가 필요함.
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"

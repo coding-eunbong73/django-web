@@ -1,3 +1,5 @@
+from django.core.mail import send_mail
+from django.forms.models import BaseModelForm
 from django.shortcuts import render, redirect, reverse
 from django.http.response import HttpResponse
 from .models import 아이디, Sale, Person
@@ -44,6 +46,16 @@ class saleFormView(generic.CreateView):
 
     def get_success_url(self):
         return reverse("sales:list")
+
+    def form_valid(self, form):
+        send_mail(
+            subject="test",
+            message="사이트 가서 확인하세요",
+            from_email="test@test.com",
+            recipient_list=["test@gmail.com"]
+        )
+        return super(saleFormView, self).form_valid(form)
+
 
 def saleForm(request):
     print(request.POST)
