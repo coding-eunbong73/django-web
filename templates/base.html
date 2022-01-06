@@ -1,11 +1,13 @@
 <html>
 <head>
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
 </head>
 
 <body>
 
 <div class="m-5 max-w-7xl max-auto bg-purple-600 bg-opacity-75">
+{% include 'menu.html' %}
 {% block content %}
     
 {% endblock content %}

@@ -4,13 +4,7 @@ from .models import 아이디, Sale, Person
 from .forms import SaleForm, SaleModelForm
 
 def homepage(request):
-    guests = 아이디.objects.all()
-    context = { 
-        "menu_name" : "짜장",
-        "price" : "5000원",
-        "guests" : guests
-    }
-    return render(request, "anyfile2.html", context)
+    return render(request, "firstPage.html")
 
 def salesList(request):
     saleGuests = Sale.objects.all()
