@@ -1,25 +1,17 @@
 <html>
 <head>
-<style>
-    .sale {
-        padding-top: 20px;
-        padding-bottom: 30px;
-        padding-left: 10px;
-        padding-right: 10px;
-        margin: 5px;
-        background-color: #f5f5f5;
-    }
-</style>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
 <body>
 
+<div class="m-5 max-w-7xl max-auto bg-purple-600 bg-opacity-75">
 {% block content %}
     
 {% endblock content %}
 
 {% include 'program.html' %}
-
+</div>
 </body>
 
 </html>
