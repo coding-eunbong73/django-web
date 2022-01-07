@@ -131,5 +131,8 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 #로그인 성공 후, redirect URL
 LOGIN_REDIRECT_URL = "/sales"
 
+#인증이 필요한 경우, LOGIN_URL로 가도록 설정
+LOGIN_URL = "/login"
+
 #로그아웃 성공 후, redirect URL
 LOGOUT_REDIRECT_URL = "/login"

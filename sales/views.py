@@ -5,6 +5,7 @@ from django.http.response import HttpResponse
 from .models import 아이디, Sale, Person
 from .forms import SaleForm, SaleModelForm, OurUserCreationForm
 from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class registerMemberView(generic.CreateView):
@@ -21,7 +22,7 @@ def homepage(request):
     return render(request, "firstPage.html")
 
 
-class salesListView(generic.ListView):
+class salesListView(LoginRequiredMixin, generic.ListView):
     template_name = "folder/salesList.html"
     queryset = Sale.objects.all()
     context_object_name = "saleGuests"
@@ -34,7 +35,7 @@ def salesList(request):
     }
     return render(request, "folder/salesList.html", context)
 
-class saleDetailView(generic.DetailView):
+class saleDetailView(LoginRequiredMixin, generic.DetailView):
     template_name = "folder/saleDetail.html"
     queryset = Sale.objects.all()
     context_object_name = "sale"
@@ -48,7 +49,7 @@ def saleDetail(request, pk):
     }
     return render(request, "folder/saleDetail.html", context)
 
-class saleFormView(generic.CreateView):
+class saleFormView(LoginRequiredMixin, generic.CreateView):
     template_name = "folder/saleForm.html"
     form_class = SaleModelForm
 
@@ -79,7 +80,7 @@ def saleForm(request):
     }
     return render(request, "folder/saleForm.html", context)    
 
-class saleUpdateView(generic.UpdateView):
+class saleUpdateView(LoginRequiredMixin, generic.UpdateView):
     print("saleUpdateView!!!")
 
     template_name = "folder/saleUpdate.html"
@@ -108,7 +109,7 @@ def saleUpdate(request, pk):
     }
     return render(request, "folder/saleUpdate.html", context)
 
-class saleDeleteView(generic.DeleteView):
+class saleDeleteView(LoginRequiredMixin, generic.DeleteView):
     print("saleDeleteView!!!")
     queryset = Sale.objects.all()
     template_name = "folder/saleDelete.html"
