@@ -3,8 +3,16 @@ from django.forms.models import BaseModelForm
 from django.shortcuts import render, redirect, reverse
 from django.http.response import HttpResponse
 from .models import 아이디, Sale, Person
-from .forms import SaleForm, SaleModelForm
+from .forms import SaleForm, SaleModelForm, OurUserCreationForm
 from django.views import generic
+
+
+class registerMemberView(generic.CreateView):
+    template_name = "registration/registerMember.html"
+    form_class = OurUserCreationForm
+
+    def get_success_url(self):
+        return reverse("login")
 
 class homepageTemplateView(generic.TemplateView):
     template_name = "firstPage.html"
