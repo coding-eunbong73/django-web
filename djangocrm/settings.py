@@ -127,3 +127,9 @@ AUTH_USER_MODEL = 'sales.아이디'
 
 # console: console에 표시만됨, 실제 보내지게 할려면 smtp설정정보가 필요함.
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+#로그인 성공 후, redirect URL
+LOGIN_REDIRECT_URL = "/sales"
+
+#로그아웃 성공 후, redirect URL
+LOGOUT_REDIRECT_URL = "/login"
