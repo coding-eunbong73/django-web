@@ -27,5 +27,6 @@ class Person(models.Model):
 def signalMemberCreation(sender, instance, created, **kwargs):
     if created :
         UserProfile.objects.create(회원=instance)
+        Person.objects.create(회원=instance)
 
 post_save.connect(signalMemberCreation, sender=아이디)
